@@ -1,6 +1,10 @@
 package spring;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
 public class MemberInfoPrinter {
+    @Autowired
     private MemberDao memberDao;
     private MemberPrinter printer;
 
@@ -19,6 +23,8 @@ public class MemberInfoPrinter {
         this.memberDao = memberDao;
     }
 
+    @Autowired
+    @Qualifier("printer")
     public void setPrinter(MemberPrinter printer) {
         this.printer = printer;
     }

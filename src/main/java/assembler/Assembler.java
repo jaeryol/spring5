@@ -11,7 +11,7 @@ public class Assembler {
 
     public Assembler() {
         memberDao = new MemberDao();
-        registerService = new MemberRegisterService(memberDao);
+        registerService = new MemberRegisterService();
         passwordService = new ChangePasswordService();
         passwordService.setMemberDao(memberDao);
     }

@@ -14,7 +14,7 @@ public class AppConf2 {
 
     @Bean
     public MemberRegisterService memberRegisterService() {
-        return new MemberRegisterService(memberDao);
+        return new MemberRegisterService();
     }
 
     @Bean
@@ -28,7 +28,7 @@ public class AppConf2 {
 
     @Bean
     public MemberListPrinter listPrinter() {
-        return new MemberListPrinter(memberDao, memberPrinter);
+        return new MemberListPrinter();
     }
 
     @Bean
