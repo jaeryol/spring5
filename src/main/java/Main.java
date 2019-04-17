@@ -74,7 +74,7 @@ public class Main {
         }
 
         MemberRegisterService registerService =
-            ctx.getBean("memberRegisterService", MemberRegisterService.class);
+            ctx.getBean(MemberRegisterService.class);
 
         RegisterRequest req = new RegisterRequest();
         req.setEmail(args[1]);
@@ -104,7 +104,7 @@ public class Main {
         }
 
         ChangePasswordService changePasswordService =
-            ctx.getBean("changePasswordService", ChangePasswordService.class);
+            ctx.getBean(ChangePasswordService.class);
 
         try {
             changePasswordService.changePassword(args[1], args[2], args[3]);
