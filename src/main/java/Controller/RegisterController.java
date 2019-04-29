@@ -2,6 +2,7 @@ package Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import spring.DuplicateMemberException;
 import spring.MemberRegisterService;
 import spring.RegisterRequest;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/register")
@@ -50,11 +53,19 @@ public class RegisterController {
     }
 
     @PostMapping("/step3")
-    public String handleStep3(RegisterRequest registerRequest) {
+    public String handleStep3(
+        @Valid RegisterRequest registerRequest,
+        Errors errors) {
+
+        if (errors.hasErrors()) {
+            return "register/step2";
+        }
+
         try {
             memberRegisterService.regist(registerRequest);
             return "register/step3";
         } catch (DuplicateMemberException ex) {
+            errors.rejectValue("email", "duplicate");
             return "register/step2";
         }
     }
