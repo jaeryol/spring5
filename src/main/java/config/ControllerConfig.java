@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import spring.AuthService;
 import spring.ChangePasswordService;
+import spring.MemberDao;
 import spring.MemberRegisterService;
 
 @Configuration
@@ -19,6 +20,9 @@ public class ControllerConfig {
 
     @Autowired
     private ChangePasswordService changePasswordService;
+
+    @Autowired
+    private MemberDao memberDao;
 
     @Bean
     public RegisterController registerController() {
@@ -50,6 +54,22 @@ public class ControllerConfig {
     public ChangePasswordController changePasswordController() {
         ChangePasswordController controller = new ChangePasswordController();
         controller.setService(changePasswordService);
+
+        return controller;
+    }
+
+    @Bean
+    public MemberListController memberListController() {
+        MemberListController controller = new MemberListController();
+        controller.setMemberDao(memberDao);
+
+        return controller;
+    }
+
+    @Bean
+    public MemberDetailController memberDetailController() {
+        MemberDetailController controller = new MemberDetailController();
+        controller.setMemberDao(memberDao);
 
         return controller;
     }
